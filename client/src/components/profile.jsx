@@ -1,8 +1,8 @@
-import "./button.css"; // Import your button CSS file
+import "./button.css";
 
 import React, { useState } from "react";
 
-import userPfp from "./assets/userpfp.png"; // Import user profile picture
+import userPfp from "./assets/userpfp.png";
 
 const UserProfile = () => {
   const [posts, setPosts] = useState(["Post 1", "Post 2"]);
@@ -64,7 +64,7 @@ const UserProfile = () => {
                   <div key={index} className="mb-2">
                     {post}
                     <button
-                      className="btn btn-primary btn-tag ms-2"
+                      className="btn btn-outline-primary btn-favorite"
                       onClick={() => editPost(index)}
                     >
                       Edit Post

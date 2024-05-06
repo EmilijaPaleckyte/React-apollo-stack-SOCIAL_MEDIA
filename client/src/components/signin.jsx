@@ -62,7 +62,7 @@ const SignInForm = () => {
                 />
               </div>
               <div className="text-center">
-                <button type="submit" className="button">
+                <button className="btn btn-outline-primary btn-favorite">
                   Sign In
                 </button>
               </div>
