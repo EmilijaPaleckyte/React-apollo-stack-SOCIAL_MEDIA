@@ -29,7 +29,18 @@ const root = {
   user: async ({ id }) => await User.findById(id),
   postsByUser: async ({ userId }) => await Post.find({ author: userId }),
   getAllUsers: async () => await User.find(),
-  createUser: async ({ input }) => await User.create(input),
+  createUser: async ({ input }) => {
+    try {
+      // Create a new user document using the input data
+      const newUser = await User.create(input);
+      // Return the newly created user object
+      return newUser;
+    } catch (error) {
+      // If there's an error, log it and throw an error
+      console.error("Error creating user:", error);
+      throw new Error("Failed to create user");
+    }
+  },
   createPost: async ({ input }) => await Post.create(input),
   likePost: async ({ postId }) => await Like.create({ post: postId }),
   createTag: async ({ name }) => await Tag.create({ name }),
