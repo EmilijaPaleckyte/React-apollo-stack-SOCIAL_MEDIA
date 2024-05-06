@@ -1,0 +1,7 @@
+server pasileidzia - npm start
+client - npm run dev
+
+tap and pfp ir numeta i prfl
+functionality
+
+hash psw, kiti standards? 

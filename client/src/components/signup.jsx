@@ -11,6 +11,7 @@ const SignUpForm = () => {
     password: "",
     confirmPassword: "",
   });
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +31,7 @@ const SignUpForm = () => {
     }
   `;
 
-  const [signUp, { data, loading, error }] = useMutation(SIGN_UP);
+  const [signUp] = useMutation(SIGN_UP);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,12 +44,16 @@ const SignUpForm = () => {
           },
         },
       });
-      console.log("User signed up:", data.createUser);
-      // Optionally, redirect the user to another page or show a success message
+      console.log("User signed up successfully:", data.createUser);
+      setShowSuccess(true);
     } catch (error) {
       console.error("Error signing up:", error);
-      // Display error message to the user
     }
+  };
+
+  const handleCloseSuccess = () => {
+    setShowSuccess(false);
+    // Optionally, redirect the user to another page
   };
 
   return (
@@ -129,6 +134,26 @@ const SignUpForm = () => {
           </div>
         </div>
       </div>
+      {showSuccess && (
+        <div className="position-fixed top-50 start-50 translate-middle">
+          <div className="card text-white bg-success mb-3">
+            <div className="card-header">Success!</div>
+            <div className="card-body">
+              <h5 className="card-title">Profile Created Successfully</h5>
+              <p className="card-text">
+                Your profile has been successfully created. Click below to
+                proceed.
+              </p>
+              <button className="btn btn-light" onClick={handleCloseSuccess}>
+                Close
+              </button>
+              <a href="/profile" className="btn btn-primary">
+                Go to Profile
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
