@@ -40,7 +40,7 @@ const SignInForm = ({ setUsername }) => {
 
       console.log("User signed in successfully:", data.signIn);
       setShowSuccess(true);
-      setUsername(data.signIn); // Update the username in the parent component
+      setUsername(data.signIn);
     } catch (error) {
       console.error("Error signing in:", error);
     }

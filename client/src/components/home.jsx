@@ -11,10 +11,57 @@ const TagsCard = () => {
         <div className="card-body d-flex flex-column align-items-center">
           <h5 className="card-title text-center mb-3">Tags</h5>
           <div className="d-flex flex-wrap justify-content-center">
-            <button className="btn btn-primary btn-tag me-2 mb-2">Tag1</button>
-            <button className="btn btn-primary btn-tag me-2 mb-2">Tag2</button>
-            <button className="btn btn-primary btn-tag me-2 mb-2">Tag3</button>
-            {/* Add more tags */}
+            <button className="btn btn-primary btn-tag me-2 mb-2">
+              Fashion
+            </button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">
+              Health
+            </button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">Books</button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">
+              Technology
+            </button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">Food</button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">News</button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">
+              Travel
+            </button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">
+              Fitness
+            </button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">Music</button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">Art</button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">
+              Movies
+            </button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">
+              Education
+            </button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">
+              Sports
+            </button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">
+              Gaming
+            </button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">
+              Science
+            </button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">
+              Finance
+            </button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">DIY</button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">
+              Nature
+            </button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">
+              Photography
+            </button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">
+              Fashion
+            </button>
+            <button className="btn btn-primary btn-tag me-2 mb-2">
+              Coding
+            </button>
           </div>
         </div>
       </div>

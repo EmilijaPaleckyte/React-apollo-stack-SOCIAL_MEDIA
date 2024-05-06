@@ -12,3 +12,5 @@ x kad istrint prie edit
 prideti forma atgal
 
 liked posts fix
+
+username shows dummy
