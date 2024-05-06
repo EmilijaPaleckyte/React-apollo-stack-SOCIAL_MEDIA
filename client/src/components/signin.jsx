@@ -7,6 +7,7 @@ const SignInForm = () => {
     email: "",
     password: "",
   });
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,11 +37,17 @@ const SignInForm = () => {
       });
 
       console.log("User signed in successfully:", data.signIn);
+      setShowSuccess(true);
       // Handle successful sign-in here, e.g., redirecting to another page
     } catch (error) {
       console.error("Error signing in:", error);
       // Handle sign-in error, e.g., displaying error message to the user
     }
+  };
+
+  const handleCloseSuccess = () => {
+    setShowSuccess(false);
+    // Redirect the user to profile page
   };
 
   return (
@@ -93,6 +100,29 @@ const SignInForm = () => {
           </div>
         </div>
       </div>
+      {showSuccess && (
+        <div className="position-fixed top-50 start-50 translate-middle">
+          <div className="card text-white bg-success mb-3">
+            <div className="card-header">Success!</div>
+            <div className="card-body">
+              <h5 className="card-title">Sign In Successful</h5>
+              <p className="card-text">
+                You have successfully signed in. Click below to proceed.
+              </p>
+              <button
+                className="btn btn-light text-primary"
+                onClick={handleCloseSuccess}
+                style={{ marginRight: "10px" }}
+              >
+                Close
+              </button>
+              <a href="/profile" className="btn btn-primary">
+                Go to Profile
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
