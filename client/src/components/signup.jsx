@@ -1,5 +1,3 @@
-import "./button.css";
-
 import { gql, useMutation } from "@apollo/client";
 
 import { useState } from "react";
@@ -126,7 +124,10 @@ const SignUpForm = () => {
                 />
               </div>
               <div className="text-center">
-                <button className="btn btn-outline-primary btn-favorite">
+                <button
+                  className="btn btn-outline-primary btn-favorite"
+                  style={{ marginRight: "10px" }}
+                >
                   Sign Up
                 </button>
               </div>
@@ -144,7 +145,11 @@ const SignUpForm = () => {
                 Your profile has been successfully created. Click below to
                 proceed.
               </p>
-              <button className="btn btn-light" onClick={handleCloseSuccess}>
+              <button
+                className="btn btn-light text-primary" // Added text-primary class to make the text blue
+                onClick={handleCloseSuccess}
+                style={{ marginRight: "10px" }}
+              >
                 Close
               </button>
               <a href="/profile" className="btn btn-primary">
