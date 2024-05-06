@@ -1,8 +1,10 @@
 import { gql, useMutation } from "@apollo/client";
 
+import PropTypes from "prop-types";
+import UserProfile from "./profile";
 import { useState } from "react";
 
-const SignInForm = () => {
+const SignInForm = ({ setUsername }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -38,16 +40,14 @@ const SignInForm = () => {
 
       console.log("User signed in successfully:", data.signIn);
       setShowSuccess(true);
-      // Handle successful sign-in here, e.g., redirecting to another page
+      setUsername(data.signIn); // Update the username in the parent component
     } catch (error) {
       console.error("Error signing in:", error);
-      // Handle sign-in error, e.g., displaying error message to the user
     }
   };
 
   const handleCloseSuccess = () => {
     setShowSuccess(false);
-    // Redirect the user to profile page
   };
 
   return (
@@ -127,4 +127,22 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+SignInForm.propTypes = {
+  setUsername: PropTypes.func.isRequired,
+};
+
+const App = () => {
+  const [username, setUsername] = useState(""); // Change initial state to an empty string
+
+  return (
+    <div>
+      {username ? (
+        <UserProfile username={username} /> // Render UserProfile if username is set
+      ) : (
+        <SignInForm setUsername={setUsername} />
+      )}
+    </div>
+  );
+};
+
+export default App;

@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"; // Import PropTypes for prop validation
+import PropTypes from "prop-types";
 import { useState } from "react";
 import userPfp from "./assets/userpfp.png";
 
@@ -47,7 +47,7 @@ const UserProfile = ({ username }) => {
                 style={{ width: "150px", borderRadius: "50%" }}
               />
               <h2 style={{ color: "white", marginBottom: "5px" }}>
-                {username}
+                {username} {/* Display the username */}
               </h2>
             </div>
           </section>
@@ -106,24 +106,4 @@ UserProfile.propTypes = {
   username: PropTypes.string.isRequired,
 };
 
-const App = () => {
-  const [username, setUsername] = useState("YourUsernameHere"); // Set the initial username state
-
-  return (
-    <div
-      style={{
-        background: "linear-gradient(to bottom, #8E2DE2, #4A00E0)",
-        minHeight: "100vh",
-      }}
-    >
-      <div className="container">
-        <div className="row justify-content-center">
-          {/* Render the UserProfile component and pass the username prop */}
-          <UserProfile username={username} />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default App;
+export default UserProfile;
