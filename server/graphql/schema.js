@@ -57,6 +57,7 @@ const schema = buildSchema(`
     likePost(postId: ID!): Like!
     createTag(name: String!): Tag!
     createCategory(name: String!): Category!
+    signIn(email: String!, password: String!): String! 
   }
 `);
 

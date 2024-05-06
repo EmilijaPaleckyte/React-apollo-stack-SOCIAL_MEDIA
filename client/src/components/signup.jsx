@@ -1,5 +1,7 @@
 import "./button.css";
 
+import { gql, useMutation } from "@apollo/client";
+
 import { useState } from "react";
 
 const SignUpForm = () => {
@@ -18,10 +20,35 @@ const SignUpForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const SIGN_UP = gql`
+    mutation SignUp($input: CreateUserInput!) {
+      createUser(input: $input) {
+        id
+        username
+        email
+      }
+    }
+  `;
+
+  const [signUp, { data, loading, error }] = useMutation(SIGN_UP);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Submission logic here
-    console.log("Form submitted with data:", formData);
+    try {
+      const { data } = await signUp({
+        variables: {
+          input: {
+            username: formData.username,
+            email: formData.email,
+          },
+        },
+      });
+      console.log("User signed up:", data.createUser);
+      // Optionally, redirect the user to another page or show a success message
+    } catch (error) {
+      console.error("Error signing up:", error);
+      // Display error message to the user
+    }
   };
 
   return (

@@ -12,6 +12,7 @@ const Header = () => {
             onError={(e) => console.error("Error loading image:", e)}
           />
         </div>
+        {/* <h1 style={styles.heading}>Coconut Media</h1>{" "} */}
         <nav style={styles.nav}>
           <ul style={styles.navList}>
             <li style={styles.navItem}>
@@ -64,9 +65,15 @@ const styles = {
     maxWidth: "100px",
   },
   logoImage: {
-    maxWidth: "80px", 
+    maxWidth: "80px",
     maxHeight: "60px",
     height: "auto",
+  },
+  heading: {
+    color: "white",
+    fontSize: "1.5rem",
+    margin: "0 0 0 0.5rem",
+    fontWeight: "bold", 
   },
   nav: {},
   navList: {
