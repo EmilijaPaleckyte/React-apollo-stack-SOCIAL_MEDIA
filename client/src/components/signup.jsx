@@ -51,7 +51,7 @@ const SignUpForm = () => {
 
   const handleCloseSuccess = () => {
     setShowSuccess(false);
-    // Optionally, redirect the user to another page
+    // Redirect the user to another page
   };
 
   return (
@@ -146,7 +146,7 @@ const SignUpForm = () => {
                 proceed.
               </p>
               <button
-                className="btn btn-light text-primary" // Added text-primary class to make the text blue
+                className="btn btn-light text-primary"
                 onClick={handleCloseSuccess}
                 style={{ marginRight: "10px" }}
               >

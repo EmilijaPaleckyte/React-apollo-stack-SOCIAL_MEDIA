@@ -1,3 +1,5 @@
+import { gql, useMutation } from "@apollo/client";
+
 import { useState } from "react";
 
 const SignInForm = () => {
@@ -14,10 +16,31 @@ const SignInForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const SIGN_IN = gql`
+    mutation SignIn($email: String!, $password: String!) {
+      signIn(email: $email, password: $password)
+    }
+  `;
+
+  const [signIn] = useMutation(SIGN_IN);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Submission logic here
-    console.log("Form submitted with data:", formData);
+
+    try {
+      const { data } = await signIn({
+        variables: {
+          email: formData.email,
+          password: formData.password,
+        },
+      });
+
+      console.log("User signed in successfully:", data.signIn);
+      // Handle successful sign-in here, e.g., redirecting to another page
+    } catch (error) {
+      console.error("Error signing in:", error);
+      // Handle sign-in error, e.g., displaying error message to the user
+    }
   };
 
   return (
