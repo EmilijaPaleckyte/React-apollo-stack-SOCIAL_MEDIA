@@ -58,9 +58,11 @@ const SignUpForm = () => {
     <div
       style={{
         background: "linear-gradient(to bottom, #8E2DE2, #4A00E0)",
-        height: "100vh",
+        minHeight: "100vh", // Adjusted minHeight
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
-      className="d-flex align-items-center justify-content-center"
     >
       <div className="col-md-6">
         <div className="card mt-5">
@@ -125,6 +127,7 @@ const SignUpForm = () => {
               </div>
               <div className="text-center">
                 <button
+                  type="submit" // Added type attribute
                   className="btn btn-outline-primary btn-favorite"
                   style={{ marginRight: "10px" }}
                 >
