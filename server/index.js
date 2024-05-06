@@ -79,6 +79,12 @@ app.use(
   })
 );
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error("Error:", err);
+  res.status(500).send("Internal Server Error");
+});
+
 // Route handler for the root URL
 app.get("/", (req, res) => {
   res.send("Welcome to the GraphQL API!");

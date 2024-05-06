@@ -18,3 +18,12 @@ query getUser($id: ID){
     }
 }
 `
+export const GET_USER_PROFILE = gql`
+  query GetUserProfile($userId: ID!) {
+    user(id: $userId) {
+      id
+      username
+      email
+    }
+  }
+`;

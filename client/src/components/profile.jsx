@@ -1,7 +1,6 @@
 import "./button.css";
 
-import React, { useState } from "react";
-
+import { useState } from "react";
 import userPfp from "./assets/userpfp.png";
 
 const UserProfile = () => {
