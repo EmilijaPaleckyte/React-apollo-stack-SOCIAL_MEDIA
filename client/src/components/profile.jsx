@@ -1,9 +1,8 @@
-import "./button.css";
-
+import PropTypes from "prop-types"; // Import PropTypes for prop validation
 import { useState } from "react";
 import userPfp from "./assets/userpfp.png";
 
-const UserProfile = () => {
+const UserProfile = ({ username }) => {
   const [posts, setPosts] = useState(["Post 1", "Post 2"]);
   const [likedPosts, setLikedPosts] = useState([
     "Liked Post 1",
@@ -31,7 +30,7 @@ const UserProfile = () => {
       style={{
         background: "linear-gradient(to bottom, #8E2DE2, #4A00E0)",
         minHeight: "100vh",
-        paddingTop: "70px",
+        paddingTop: "50px",
       }}
     >
       <div className="container">
@@ -47,7 +46,9 @@ const UserProfile = () => {
                 alt="User Profile"
                 style={{ width: "150px", borderRadius: "50%" }}
               />
-              <h2 style={{ color: "white", marginBottom: "5px" }}>Username</h2>
+              <h2 style={{ color: "white", marginBottom: "5px" }}>
+                {username}
+              </h2>
             </div>
           </section>
 
@@ -100,4 +101,29 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+// PropTypes validation for the UserProfile component
+UserProfile.propTypes = {
+  username: PropTypes.string.isRequired,
+};
+
+const App = () => {
+  const [username, setUsername] = useState("YourUsernameHere"); // Set the initial username state
+
+  return (
+    <div
+      style={{
+        background: "linear-gradient(to bottom, #8E2DE2, #4A00E0)",
+        minHeight: "100vh",
+      }}
+    >
+      <div className="container">
+        <div className="row justify-content-center">
+          {/* Render the UserProfile component and pass the username prop */}
+          <UserProfile username={username} />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default App;
