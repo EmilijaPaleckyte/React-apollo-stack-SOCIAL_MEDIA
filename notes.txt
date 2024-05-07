@@ -4,7 +4,10 @@ client - npm run dev
 leidimai roliu
 
 prideti forma atgal
-liked posts fix
+
 username shows dummy
-prideti ne viena posta
-x kad istrint prie edit
+
+home: 
+username generate ir cia
+kazkaip generate random posts
+liked posts fix

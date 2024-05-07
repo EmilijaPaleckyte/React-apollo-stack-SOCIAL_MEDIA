@@ -1,5 +1,7 @@
 import "./button.css";
 
+import React, { useState } from 'react';
+
 import userPfp from "./assets/userpfp.png";
 
 const TagsCard = () => {
@@ -74,6 +76,12 @@ const TagsCard = () => {
 const profileLink = "/profile";
 
 const PostFeed = () => {
+  const [liked, setLiked] = useState(false); // State to track whether the post is liked
+
+  const handleLikeClick = () => {
+    setLiked(!liked); // Toggle the liked state
+  };
+
   return (
     <div
       className="col-md-6 mb-4"
@@ -94,8 +102,16 @@ const PostFeed = () => {
           <div className="d-flex flex-column">
             <div className="d-flex justify-content-between align-items-center mb-2">
               <span className="fw-bold">Username</span>
-              <button className="btn btn-outline-primary btn-favorite">
-                Favorite
+              <button
+                className="btn btn-outline-primary btn-icon"
+                onClick={handleLikeClick}
+              >
+                {/* Use conditional rendering to change the heart icon based on the liked state */}
+                {liked ? (
+                  <i className="fas fa-heart"></i>
+                ) : (
+                  <i className="far fa-heart"></i>
+                )}
               </button>
             </div>
             <p>Post Info Lorem ipsum dolor sit amet...</p>
