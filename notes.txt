@@ -6,6 +6,5 @@ leidimai roliu
 prideti forma atgal
 liked posts fix
 username shows dummy
-add pfp prie post feed ir prie postu
 prideti ne viena posta
 x kad istrint prie edit

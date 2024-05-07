@@ -25,6 +25,12 @@ const UserProfile = ({ username }) => {
     }
   };
 
+  const deletePost = (index) => {
+    const updatedPosts = [...posts];
+    updatedPosts.splice(index, 1);
+    setPosts(updatedPosts);
+  };
+
   return (
     <div
       style={{
@@ -64,10 +70,16 @@ const UserProfile = ({ username }) => {
                   <div key={index} className="mb-2">
                     {post}
                     <button
-                      className="btn btn-outline-primary btn-favorite"
+                      className="btn btn-outline-primary btn-favorite ms-2"
                       onClick={() => editPost(index)}
                     >
-                      Edit Post
+                      Edit
+                    </button>
+                    <button
+                      className="btn btn-outline-danger btn-favorite ms-2"
+                      onClick={() => deletePost(index)}
+                    >
+                      X
                     </button>
                   </div>
                 ))}
@@ -75,12 +87,11 @@ const UserProfile = ({ username }) => {
                   className="btn btn-primary btn-tag ms-2"
                   onClick={addPost}
                 >
-                  Add Post
+                  Add
                 </button>
               </div>
             </div>
           </section>
-
           {/* Liked Posts Section */}
           <section
             className="col-md-6 mb-4"
