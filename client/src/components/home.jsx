@@ -1,5 +1,7 @@
 import "./button.css";
 
+import userPfp from "./assets/userpfp.png";
+
 const TagsCard = () => {
   return (
     <div
@@ -69,6 +71,8 @@ const TagsCard = () => {
   );
 };
 
+const profileLink = "/profile";
+
 const PostFeed = () => {
   return (
     <div
@@ -79,7 +83,14 @@ const PostFeed = () => {
       <div className="card mt-5 h-100">
         <div className="card-body">
           <h5 className="card-title text-center mb-3">Post Feed</h5>
-          {/* Example Post */}
+          {/* Post */}
+          <a href={profileLink}>
+            <img
+              src={userPfp}
+              alt="User Profile"
+              style={{ width: "50px", borderRadius: "50%" }}
+            />
+          </a>
           <div className="d-flex flex-column">
             <div className="d-flex justify-content-between align-items-center mb-2">
               <span className="fw-bold">Username</span>

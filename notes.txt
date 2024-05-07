@@ -1,16 +1,11 @@
 server pasileidzia - npm start
 client - npm run dev
 
-tap and pfp ir numeta i prfl
-functionality
 leidimai roliu
 
-hash psw, kiti standards? 
-
-x kad istrint prie edit
-
 prideti forma atgal
-
 liked posts fix
-
 username shows dummy
+add pfp prie post feed ir prie postu
+prideti ne viena posta
+x kad istrint prie edit
