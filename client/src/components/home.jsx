@@ -1,6 +1,6 @@
 import "./button.css";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 import userPfp from "./assets/userpfp.png";
 
@@ -79,7 +79,7 @@ const PostFeed = () => {
   const [liked, setLiked] = useState(false); // State to track whether the post is liked
 
   const handleLikeClick = () => {
-    setLiked(!liked); // Toggle the liked state
+    setLiked((prevLiked) => !prevLiked); // Toggle the liked state
   };
 
   return (
