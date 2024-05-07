@@ -47,9 +47,8 @@ const root = {
   createCategory: async ({ name }) => await Category.create({ name }),
   signIn: async ({ email, password }) => {
     // Perform authentication logic here
-    // Assuming authentication logic succeeds, log the successful sign-in
-    console.log(`User signed in successfully: email=${email}`);
-
+    // Logging the successful sign-in
+    console.log(`User signed in successfully: email:${email}`);
     // Return the authentication token or session ID
     return "dummyToken"; // Replace "dummyToken" with your actual authentication token
   },

@@ -4,7 +4,7 @@ import userPfp from "./assets/userpfp.png";
 
 const UserProfile = ({ username }) => {
   const [posts, setPosts] = useState(["Post 1", "Post 2"]);
-  const [likedPosts, setLikedPosts] = useState([
+  const [likedPosts] = useState([
     "Liked Post 1",
     "Liked Post 2",
   ]);

@@ -3,11 +3,16 @@ client - npm run dev
 
 leidimai roliu
 
+sign in:
 prideti forma atgal
-
 username shows dummy
 
 home: 
 username generate ir cia
 kazkaip generate random posts
 liked posts fix
+tags
+
+profile:
+kad actual postai atsirastu feede
+actual posts kad rodytu
