@@ -20,20 +20,16 @@ const SignInForm = ({ setUsername }) => {
   };
 
   const SIGN_IN = gql`
-  mutation SignIn($email: String!, $password: String!) {
-    getUserByEmailAndPassword(email: $email, password: $password) {
-      _id
-      email
-      username  
+    mutation SignIn($email: String!, $password: String!) {
+      signIn(email: $email, password: $password)
     }
-  }
-`;
+  `;
 
   const [signIn] = useMutation(SIGN_IN);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const { data } = await signIn({
         variables: {
@@ -41,17 +37,12 @@ const SignInForm = ({ setUsername }) => {
           password: formData.password,
         },
       });
-  
-      if (data.getUserByEmailAndPassword) {
-        console.log("User signed in successfully:", data.getUserByEmailAndPassword);
-        setShowSuccess(true);
-        setUsername(data.getUserByEmailAndPassword.username);  // Make sure this matches the field returned by your GraphQL resolver
-      } else {
-        console.error("No user data returned");
-      }
+
+      console.log("User signed in successfully:", data.signIn);
+      setShowSuccess(true);
+      setUsername(data.signIn);
     } catch (error) {
       console.error("Error signing in:", error);
-      alert('Failed to sign in. Please check your credentials and try again.'); // Improve error feedback
     }
   };
 
