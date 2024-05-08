@@ -45,20 +45,13 @@ const root = {
   likePost: async ({ postId }) => await Like.create({ post: postId }),
   createTag: async ({ name }) => await Tag.create({ name }),
   createCategory: async ({ name }) => await Category.create({ name }),
-
-
-  getUserByEmailAndPassword: async ({ email, password }) => {
-    try {
-      const user = await User.findOne({ email, password });
-      return user;
-    } catch (error) {
-      console.error('Error retrieving user:', error);
-      return null;
-    }
+  signIn: async ({ email, password }) => {
+    // Perform authentication logic here
+    // Logging the successful sign-in
+    console.log(`User signed in successfully: email:${email}`);
+    // Return the authentication token or session ID
+    return "dummyToken"; // Replace "dummyToken" with your actual authentication token
   },
-  
-
-
   Post: {
     author: async (parent) => await User.findById(parent.author),
     likes: async (parent) => await Like.find({ post: parent.id }),
