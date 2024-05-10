@@ -2,13 +2,7 @@ server pasileidzia - npm start
 client - npm run dev
 
 leidimai roliu
-
-home: 
-username generate ir cia
-kazkaip generate random posts
+usernames
+posts
 liked posts fix
 tags
-
-profile:
-kad actual postai atsirastu feede
-actual posts kad rodytu
