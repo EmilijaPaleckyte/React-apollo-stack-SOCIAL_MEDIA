@@ -1,6 +1,7 @@
 import "./button.css";
 
-import { useState } from "react";
+import { PostsContext } from "./postcontext";
+import { useContext } from "react";
 import userPfp from "./assets/userpfp.png";
 
 const TagsCard = () => {
@@ -73,47 +74,28 @@ const TagsCard = () => {
 const profileLink = "/profile";
 
 const PostFeed = () => {
-  const [liked, setLiked] = useState(false); // State to track whether the post is liked
-
-  const handleLikeClick = () => {
-    setLiked((prevLiked) => !prevLiked); // Toggle the liked state
-  };
+  const { posts } = useContext(PostsContext); // Accessing posts from the context
 
   return (
     <div
       className="col-md-6 mb-4"
       style={{ marginTop: "50px", height: "300px" }}
     >
-      {/* Post feed */}
       <div className="card mt-5 h-100">
         <div className="card-body">
           <h5 className="card-title text-center mb-3">Post Feed</h5>
-          {/* Post */}
-          <a href={profileLink}>
-            <img
-              src={userPfp}
-              alt="User Profile"
-              style={{ width: "50px", borderRadius: "50%" }}
-            />
-          </a>
-          <div className="d-flex flex-column">
-            <div className="d-flex justify-content-between align-items-center mb-2">
-              <span className="fw-bold">Username</span>
-              <button
-                className="btn btn-outline-primary btn-icon"
-                onClick={handleLikeClick}
-              >
-                {/* Use conditional rendering to change the heart icon based on the liked state */}
-                {liked ? (
-                  <i className="fas fa-heart"></i>
-                ) : (
-                  <i className="far fa-heart"></i>
-                )}
-              </button>
+          {posts.map((post, index) => (
+            <div key={index} className="mb-3">
+              <a href={profileLink}>
+                <img
+                  src={userPfp}
+                  alt="User Profile"
+                  style={{ width: "50px", borderRadius: "50%" }}
+                />
+              </a>
+              <p>{post}</p>
             </div>
-            <p>Post Info Lorem ipsum dolor sit amet...</p>
-          </div>
-          {/* Add more posts */}
+          ))}
         </div>
       </div>
     </div>
@@ -131,8 +113,8 @@ const App = () => {
     >
       <div className="container">
         <div className="row justify-content-center">
-          <PostFeed />
-          <TagsCard />
+          <PostFeed /> {/* Render the PostFeed component to display posts */}
+          <TagsCard /> {/* Render the TagsCard component */}
         </div>
       </div>
     </div>
