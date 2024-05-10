@@ -2,6 +2,8 @@ const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 // GraphQL schema and resolvers
@@ -13,6 +15,10 @@ const {
   Tag,
   Category,
 } = require("./models/schemaCollection");
+
+// Constants for authentication
+const JWT_SECRET = process.env.JWT_SECRET;
+const SALT_ROUNDS = 10;
 
 // Connecting to MongoDB
 mongoose
@@ -46,11 +52,34 @@ const root = {
   createTag: async ({ name }) => await Tag.create({ name }),
   createCategory: async ({ name }) => await Category.create({ name }),
   signIn: async ({ email, password }) => {
-    // Perform authentication logic here
-    // Logging the successful sign-in
-    console.log(`User signed in successfully: email:${email}`);
-    // Return the authentication token or session ID
-    return "testas"; // Replace "dummyToken" with your actual authentication token
+    try {
+      console.log(`Attempting to sign in with email: ${email}`);
+
+      const user = await User.findOne({ email });
+      if (!user) {
+        console.error(`User not found with email: ${email}`);
+        throw new Error("Invalid credentials");
+      }
+
+      console.log(
+        `User found: ${user.email}, password provided: ${password}, stored password: ${user.password}`
+      );
+
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+      if (!isPasswordValid) {
+        console.error(`Invalid password for email: ${email}`);
+        throw new Error("Invalid credentials");
+      }
+
+      const payload = { userId: user._id, email: user.email };
+      const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "1h" });
+
+      console.log(`Sign-in successful for email: ${email}`);
+      return token;
+    } catch (error) {
+      console.error("Error during sign-in:", error.message);
+      throw new Error("Failed to sign in");
+    }
   },
   Post: {
     author: async (parent) => await User.findById(parent.author),

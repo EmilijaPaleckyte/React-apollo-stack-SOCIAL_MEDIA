@@ -20,6 +20,7 @@ const TagsCard = () => {
             <button className="btn btn-primary btn-tag me-2 mb-2">
               Health
             </button>
+            {/* Add your tags here */}
             <button className="btn btn-primary btn-tag me-2 mb-2">Books</button>
             <button className="btn btn-primary btn-tag me-2 mb-2">
               Technology
@@ -58,9 +59,6 @@ const TagsCard = () => {
             </button>
             <button className="btn btn-primary btn-tag me-2 mb-2">
               Photography
-            </button>
-            <button className="btn btn-primary btn-tag me-2 mb-2">
-              Fashion
             </button>
             <button className="btn btn-primary btn-tag me-2 mb-2">
               Coding
