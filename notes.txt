@@ -3,10 +3,6 @@ client - npm run dev
 
 leidimai roliu
 
-sign in:
-prideti forma atgal
-username shows dummy
-
 home: 
 username generate ir cia
 kazkaip generate random posts

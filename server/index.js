@@ -50,7 +50,7 @@ const root = {
     // Logging the successful sign-in
     console.log(`User signed in successfully: email:${email}`);
     // Return the authentication token or session ID
-    return "dummyToken"; // Replace "dummyToken" with your actual authentication token
+    return "testas"; // Replace "dummyToken" with your actual authentication token
   },
   Post: {
     author: async (parent) => await User.findById(parent.author),
