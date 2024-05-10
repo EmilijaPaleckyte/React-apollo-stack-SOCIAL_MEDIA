@@ -5,6 +5,7 @@ const schema = buildSchema(`
     id: ID!
     username: String!
     email: String!
+    password: String!
   }
   
   type Post {
@@ -43,6 +44,7 @@ const schema = buildSchema(`
   input CreateUserInput {
     username: String!
     email: String!
+    password: String!
   }
   
   input CreatePostInput {
