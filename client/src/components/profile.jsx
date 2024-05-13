@@ -5,19 +5,19 @@ import { useAuth } from "./authcontext";
 import userPfp from "./assets/userpfp.png";
 
 const UserProfile = () => {
-  const { user } = useAuth(); 
-  const [username, setUsername] = useState(""); 
+  const { user } = useAuth();
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     if (user && user.username) {
-      setUsername(user.username); 
+      setUsername(user.username);
     } else {
-      setUsername(""); 
+      setUsername("");
     }
   }, [user]);
 
   const { posts, addPost, editPost, deletePost } = useContext(PostsContext);
-  const likedPosts = ["Liked Post 1", "Liked Post 2"]; 
+  const likedPosts = ["Liked Post 1", "Liked Post 2"];
 
   const handleAddPost = () => {
     const newPost = prompt("Enter your new post:");
@@ -30,34 +30,16 @@ const UserProfile = () => {
   };
 
   return (
-    <div
-      style={{
-        background: "linear-gradient(to bottom, #8E2DE2, #4A00E0)",
-        minHeight: "100vh",
-        paddingTop: "50px",
-      }}
-    >
+    <div style={{ background: "linear-gradient(to bottom, #8E2DE2, #4A00E0)", minHeight: "100vh", paddingTop: "50px" }}>
       <div className="container">
         <div className="row justify-content-center">
-          <section
-            className="col-md-12 mb-4 text-center"
-            style={{ marginTop: "70px" }}
-          >
+          <section className="col-md-12 mb-4 text-center" style={{ marginTop: "70px" }}>
             <div style={{ marginBottom: "10px" }}>
-              <img
-                src={userPfp}
-                alt="User Profile"
-                style={{ width: "150px", borderRadius: "50%" }}
-              />
-              <h2 style={{ color: "white", marginBottom: "5px" }}>
-                {username || "Testie"}{" "}
-              </h2>
+              <img src={userPfp} alt="User Profile" style={{ width: "150px", borderRadius: "50%" }} />
+              <h2 style={{ color: "white", marginBottom: "5px" }}>{username || "Testie"}</h2>
             </div>
           </section>
-          <section
-            className="col-md-6 mb-4"
-            style={{ marginTop: "5px", height: "300px" }}
-          >
+          <section className="col-md-6 mb-4" style={{ marginTop: "5px", height: "300px" }}>
             <div className="card mt-5 h-100">
               <div className="card-body d-flex flex-column align-items-center">
                 <h5 className="card-title text-center mb-3">My Posts</h5>
@@ -65,36 +47,18 @@ const UserProfile = () => {
                   posts.map((post, index) => (
                     <div key={index} className="mb-2">
                       {post}
-                      <button
-                        className="btn btn-outline-primary ms-2"
-                        onClick={() => handleEditPost(index)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        className="btn btn-outline-danger ms-2"
-                        onClick={() => deletePost(index)}
-                      >
-                        X
-                      </button>
+                      <button className="btn btn-outline-primary ms-2" onClick={() => handleEditPost(index)}>Edit</button>
+                      <button className="btn btn-outline-danger ms-2" onClick={() => deletePost(index)}>X</button>
                     </div>
                   ))
                 ) : (
                   <p>No posts available. Add your first post!</p>
                 )}
-                <button
-                  className="btn btn-primary ms-2"
-                  onClick={handleAddPost}
-                >
-                  Add
-                </button>
+                <button className="btn btn-primary ms-2" onClick={handleAddPost}>Add</button>
               </div>
             </div>
           </section>
-          <section
-            className="col-md-6 mb-4"
-            style={{ marginTop: "5px", height: "300px" }}
-          >
+          <section className="col-md-6 mb-4" style={{ marginTop: "5px", height: "300px" }}>
             <div className="card mt-5 h-100">
               <div className="card-body">
                 <h5 className="card-title text-center mb-3">Liked Posts</h5>
@@ -109,7 +73,5 @@ const UserProfile = () => {
     </div>
   );
 };
-
-UserProfile.propTypes = {};
 
 export default UserProfile;

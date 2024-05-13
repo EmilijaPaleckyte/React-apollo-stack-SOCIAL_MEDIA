@@ -4,6 +4,4 @@ client - npm run dev
 leidimai roliu -
 usernames -
 posts -
-liked posts fix
- fix error ir likes
 optimize
