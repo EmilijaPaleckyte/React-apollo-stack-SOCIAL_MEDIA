@@ -4,4 +4,3 @@ client - npm run dev
 leidimai roliu -
 usernames -
 posts -
-optimize
