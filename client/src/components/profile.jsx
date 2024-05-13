@@ -1,24 +1,23 @@
-import { useContext, useEffect, useState } from "react"; // Added useEffect and useState
+import { useContext, useEffect, useState } from "react";
 
 import { PostsContext } from "./postcontext";
-import { useAuth } from "./authcontext"; // Import the useAuth hook
+import { useAuth } from "./authcontext";
 import userPfp from "./assets/userpfp.png";
 
 const UserProfile = () => {
-  const { user } = useAuth(); // Access user object from AuthContext
-  const [username, setUsername] = useState(""); // State to hold the username
+  const { user } = useAuth(); 
+  const [username, setUsername] = useState(""); 
 
-  // Use useEffect to update the username when user changes
   useEffect(() => {
     if (user && user.username) {
-      setUsername(user.username); // Set the username if user is logged in
+      setUsername(user.username); 
     } else {
-      setUsername(""); // Set username to empty string if user is not logged in
+      setUsername(""); 
     }
   }, [user]);
 
   const { posts, addPost, editPost, deletePost } = useContext(PostsContext);
-  const likedPosts = ["Liked Post 1", "Liked Post 2"]; // Example static liked posts
+  const likedPosts = ["Liked Post 1", "Liked Post 2"]; 
 
   const handleAddPost = () => {
     const newPost = prompt("Enter your new post:");
@@ -40,7 +39,6 @@ const UserProfile = () => {
     >
       <div className="container">
         <div className="row justify-content-center">
-          {/* User Profile Section */}
           <section
             className="col-md-12 mb-4 text-center"
             style={{ marginTop: "70px" }}
@@ -53,12 +51,9 @@ const UserProfile = () => {
               />
               <h2 style={{ color: "white", marginBottom: "5px" }}>
                 {username || "Testie"}{" "}
-                {/* Display "Guest" if username is null */}
               </h2>
             </div>
           </section>
-
-          {/* My Posts Section */}
           <section
             className="col-md-6 mb-4"
             style={{ marginTop: "5px", height: "300px" }}
@@ -96,8 +91,6 @@ const UserProfile = () => {
               </div>
             </div>
           </section>
-
-          {/* Liked Posts Section */}
           <section
             className="col-md-6 mb-4"
             style={{ marginTop: "5px", height: "300px" }}
@@ -117,7 +110,6 @@ const UserProfile = () => {
   );
 };
 
-// Remove the username prop from propTypes definition
 UserProfile.propTypes = {};
 
 export default UserProfile;

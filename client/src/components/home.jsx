@@ -1,5 +1,5 @@
 import "./button.css";
-import "./selected.css"
+import "./selected.css";
 
 import { useContext, useState } from "react";
 
@@ -195,6 +195,11 @@ const profileLink = "/profile";
 
 const PostFeed = () => {
   const { posts } = useContext(PostsContext);
+  const [liked, setLiked] = useState(false); // State to track whether the post is liked
+
+  const handleLikeClick = () => {
+    setLiked(!liked); // Toggle the liked state
+  };
 
   return (
     <div
@@ -213,6 +218,20 @@ const PostFeed = () => {
                   style={{ width: "50px", borderRadius: "50%" }}
                 />
               </a>
+              <div className="d-flex justify-content-between align-items-center mb-2">
+                <span className="fw-bold">Username</span>
+                <button
+                  className="btn btn-outline-primary btn-icon"
+                  onClick={handleLikeClick}
+                >
+                  {/* Use conditional rendering to change the heart icon based on the liked state */}
+                  {liked ? (
+                    <i className="fas fa-heart"></i>
+                  ) : (
+                    <i className="far fa-heart"></i>
+                  )}
+                </button>
+              </div>
               <p>{post}</p>
             </div>
           ))}
@@ -220,6 +239,12 @@ const PostFeed = () => {
       </div>
     </div>
   );
+};
+
+// Prop types for PostFeed component
+PostFeed.propTypes = {
+  setSelectedTag: PropTypes.func.isRequired,
+  selectedTag: PropTypes.string,
 };
 
 const App = () => {
