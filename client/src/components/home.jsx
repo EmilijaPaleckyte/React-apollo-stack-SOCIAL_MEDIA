@@ -151,10 +151,13 @@ const profileLink = "/profile";
 
 const PostFeed = () => {
   const { posts } = useContext(PostsContext);
-  const [liked, setLiked] = useState(false);
+  const [likedPosts, setLikedPosts] = useState({});
 
-  const handleLikeClick = () => {
-    setLiked(!liked);
+  const handleLikeClick = (index) => {
+    setLikedPosts(prevLikedPosts => ({
+      ...prevLikedPosts,
+      [index]: !prevLikedPosts[index]
+    }));
   };
 
   return (
@@ -169,8 +172,8 @@ const PostFeed = () => {
               </a>
               <div className="d-flex justify-content-between align-items-center mb-2">
                 <span className="fw-bold">Username</span>
-                <button className="btn btn-outline-primary btn-icon" onClick={handleLikeClick}>
-                  {liked ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>}
+                <button className="btn btn-outline-primary btn-icon" onClick={() => handleLikeClick(index)}>
+                  {likedPosts[index] ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>}
                 </button>
               </div>
               <p>{post}</p>
