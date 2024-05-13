@@ -10,6 +10,7 @@ const SignUpForm = () => {
     confirmPassword: "",
   });
   const [showSuccess, setShowSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,12 +34,22 @@ const SignUpForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if passwords match before submitting
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match");
+      return; // Stop the form submission
+    } else {
+      setError("");
+    }
+
     try {
       const { data } = await signUp({
         variables: {
           input: {
             username: formData.username,
             email: formData.email,
+            password: formData.password, // Include the password in the input
           },
         },
       });
@@ -46,6 +57,7 @@ const SignUpForm = () => {
       setShowSuccess(true);
     } catch (error) {
       console.error("Error signing up:", error);
+      setError("Error signing up. Please try again.");
     }
   };
 
@@ -125,6 +137,7 @@ const SignUpForm = () => {
                   required
                 />
               </div>
+              {error && <p className="text-danger">{error}</p>}
               <div className="text-center">
                 <button
                   type="submit" // Added type attribute
