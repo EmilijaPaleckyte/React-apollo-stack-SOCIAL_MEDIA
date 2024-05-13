@@ -70,10 +70,17 @@ const root = {
   },
   createPost: async ({ input }) => {
     try {
-      return await Post.create(input);
+      // Validate input fields
+      if (!input.title || !input.content || !input.author) {
+        throw new Error("Title, content, and author are required fields.");
+      }
+      // Create a new post document in the database
+      const newPost = await Post.create(input);
+      // Return the newly created post
+      return newPost;
     } catch (error) {
       console.error("Error creating post:", error);
-      throw new Error("Failed to create post");
+      throw new Error("Failed to create post: " + error.message);
     }
   },
   likePost: async ({ postId }) => {
