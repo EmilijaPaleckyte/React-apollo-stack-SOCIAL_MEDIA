@@ -32,25 +32,74 @@ mongoose
 
 // Resolvers
 const root = {
-  user: async ({ id }) => await User.findById(id),
-  postsByUser: async ({ userId }) => await Post.find({ author: userId }),
-  getAllUsers: async () => await User.find(),
-  createUser: async ({ input }) => {
+  user: async ({ id }) => {
     try {
-      // Create a new user document using the input data
-      const newUser = await User.create(input);
-      // Return the newly created user object
-      return newUser;
+      return await User.findById(id);
     } catch (error) {
-      // If there's an error, log it and throw an error
-      console.error("Error creating user:", error);
-      throw new Error("Failed to create user");
+      console.error("Error fetching user:", error);
+      throw new Error("Failed to fetch user");
     }
   },
-  createPost: async ({ input }) => await Post.create(input),
-  likePost: async ({ postId }) => await Like.create({ post: postId }),
-  createTag: async ({ name }) => await Tag.create({ name }),
-  createCategory: async ({ name }) => await Category.create({ name }),
+  postsByUser: async ({ userId }) => {
+    try {
+      return await Post.find({ author: userId });
+    } catch (error) {
+      console.error("Error fetching posts by user:", error);
+      throw new Error("Failed to fetch posts by user");
+    }
+  },
+  getAllUsers: async () => {
+    try {
+      return await User.find();
+    } catch (error) {
+      console.error("Error fetching all users:", error);
+      throw new Error("Failed to fetch users");
+    }
+  },
+  createUser: async ({ input }) => {
+    try {
+      console.log("Creating user with input:", input);
+      input.password = await bcrypt.hash(input.password, SALT_ROUNDS);
+      const newUser = await User.create(input);
+      console.log("User created successfully:", newUser);
+      return newUser;
+    } catch (error) {
+      console.error("Error creating user:", error);
+      throw new Error("Failed to create user: " + error.message); // Include the original error message for clarity
+    }
+  },
+  createPost: async ({ input }) => {
+    try {
+      return await Post.create(input);
+    } catch (error) {
+      console.error("Error creating post:", error);
+      throw new Error("Failed to create post");
+    }
+  },
+  likePost: async ({ postId }) => {
+    try {
+      return await Like.create({ post: postId });
+    } catch (error) {
+      console.error("Error liking post:", error);
+      throw new Error("Failed to like post");
+    }
+  },
+  createTag: async ({ name }) => {
+    try {
+      return await Tag.create({ name });
+    } catch (error) {
+      console.error("Error creating tag:", error);
+      throw new Error("Failed to create tag");
+    }
+  },
+  createCategory: async ({ name }) => {
+    try {
+      return await Category.create({ name });
+    } catch (error) {
+      console.error("Error creating category:", error);
+      throw new Error("Failed to create category");
+    }
+  },
   signIn: async ({ email, password }) => {
     try {
       console.log(`Attempting to sign in with email: ${email}`);
@@ -78,7 +127,7 @@ const root = {
       return token;
     } catch (error) {
       console.error("Error during sign-in:", error.message);
-      throw new Error("Failed to sign in");
+      throw new Error("Failed to sign in: " + error.message);
     }
   },
   Post: {
@@ -104,6 +153,15 @@ app.use(
     schema: schema,
     rootValue: root,
     graphiql: true,
+    customFormatErrorFn: (err) => {
+      console.error("GraphQL Error:", err);
+      return {
+        message: err.message,
+        locations: err.locations,
+        path: err.path,
+        extensions: err.extensions,
+      };
+    },
   })
 );
 

@@ -28,7 +28,6 @@ export const PostsProvider = ({ children }) => {
   );
 };
 
-// Add propTypes validation for children
 PostsProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };

@@ -2,7 +2,8 @@ server pasileidzia - npm start
 client - npm run dev
 
 leidimai roliu
-usernames
-posts
-liked posts fix
+usernames - 
+posts ir liked posts fix
 tags
+
+I need posts that are created on the profile, to appear when created, and disappear when deleted on home feed.
