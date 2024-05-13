@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const login = (userData) => {
-    setUser(userData); // Update the user state with the provided user data
+    setUser(userData); // Updating the user state with the provided user data
   };
 
   const logout = () => {

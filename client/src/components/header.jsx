@@ -1,4 +1,4 @@
-import coconutMediaLogo from "./assets/coconutmedia.png"; // Importing the logo image
+import coconutMediaLogo from "./assets/coconutmedia.png";
 
 const Header = () => {
   return (

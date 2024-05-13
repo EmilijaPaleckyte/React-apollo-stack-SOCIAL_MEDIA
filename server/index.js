@@ -65,16 +65,16 @@ const root = {
       return newUser;
     } catch (error) {
       console.error("Error creating user:", error);
-      throw new Error("Failed to create user: " + error.message); // Include the original error message for clarity
+      throw new Error("Failed to create user: " + error.message); 
     }
   },
   createPost: async ({ input }) => {
     try {
-      // Validate input fields
+      // Validating input fields
       if (!input.title || !input.content || !input.author) {
         throw new Error("Title, content, and author are required fields.");
       }
-      // Create a new post document in the database
+      // New post creation in the database
       const newPost = await Post.create(input);
       // Return the newly created post
       return newPost;
@@ -153,7 +153,7 @@ const root = {
 const app = express();
 app.use(cors());
 
-// Use graphqlHTTP middleware with schema and resolvers
+// GraphqlHTTP middleware with schema and resolvers
 app.use(
   "/graphql",
   graphqlHTTP({

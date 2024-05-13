@@ -132,7 +132,7 @@ SignInForm.propTypes = {
 };
 
 const App = () => {
-  const [username, setUsername] = useState(""); // Change initial state to an empty string
+  const [username, setUsername] = useState(""); 
 
   return (
     <div>

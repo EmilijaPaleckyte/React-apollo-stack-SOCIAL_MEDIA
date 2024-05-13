@@ -1,10 +1,10 @@
 import { gql, useMutation } from "@apollo/client";
 
-import { useAuth } from "./authcontext"; // Import the useAuth hook
+import { useAuth } from "./authcontext"; // Importing the useAuth hook
 import { useState } from "react";
 
 const SignUpForm = () => {
-  const { login } = useAuth(); // Get the login function from the useAuth hook
+  const { login } = useAuth(); // Getting the login function from the useAuth hook
 
   const [formData, setFormData] = useState({
     username: "",
@@ -38,10 +38,10 @@ const SignUpForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if passwords match before submitting
+    // Checking if passwords match before submitting
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match");
-      return; // Stop the form submission
+      return; // Stopping the form submission
     } else {
       setError("");
     }
@@ -52,13 +52,13 @@ const SignUpForm = () => {
           input: {
             username: formData.username,
             email: formData.email,
-            password: formData.password, // Include the password in the input
+            password: formData.password, // Including the password in the input
           },
         },
       });
       console.log("User signed up successfully:", data.createUser);
 
-      // Update the authentication context with the signed-up user's information
+      // Updating the authentication context with the signed-up user's information
       login(data.createUser);
 
       setShowSuccess(true);
@@ -77,7 +77,7 @@ const SignUpForm = () => {
     <div
       style={{
         background: "linear-gradient(to bottom, #8E2DE2, #4A00E0)",
-        minHeight: "100vh", // Adjusted minHeight
+        minHeight: "100vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -147,7 +147,7 @@ const SignUpForm = () => {
               {error && <p className="text-danger">{error}</p>}
               <div className="text-center">
                 <button
-                  type="submit" // Added type attribute
+                  type="submit" 
                   className="btn btn-outline-primary btn-favorite"
                   style={{ marginRight: "10px" }}
                 >
