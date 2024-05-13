@@ -1,27 +1,35 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"; // Import PropTypes
 
-const AuthContext = createContext(null);
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  // Add PropTypes validation
   const [user, setUser] = useState(null);
 
-  const signIn = (userData) => {
+  useEffect(() => {
+    // Fetch or initialize user data here
+    const fetchedUser = { username: "JohnDoe" }; // Example user data
+    setUser(fetchedUser);
+  }, []);
+
+  const login = (userData) => {
     setUser(userData);
   };
 
-  const signOut = () => {
+  const logout = () => {
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
+// Define prop types for AuthProvider
 AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
