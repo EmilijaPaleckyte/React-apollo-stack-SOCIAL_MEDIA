@@ -1,8 +1,11 @@
 import { gql, useMutation } from "@apollo/client";
 
+import { useAuth } from "./authcontext"; // Import the useAuth hook
 import { useState } from "react";
 
 const SignUpForm = () => {
+  const { login } = useAuth(); // Get the login function from the useAuth hook
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -54,6 +57,10 @@ const SignUpForm = () => {
         },
       });
       console.log("User signed up successfully:", data.createUser);
+
+      // Update the authentication context with the signed-up user's information
+      login(data.createUser);
+
       setShowSuccess(true);
     } catch (error) {
       console.error("Error signing up:", error);

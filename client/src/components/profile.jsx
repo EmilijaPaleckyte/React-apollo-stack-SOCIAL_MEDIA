@@ -1,11 +1,21 @@
+import { useContext, useEffect, useState } from "react"; // Added useEffect and useState
+
 import { PostsContext } from "./postcontext";
 import { useAuth } from "./authcontext"; // Import the useAuth hook
-import { useContext } from "react";
 import userPfp from "./assets/userpfp.png";
 
 const UserProfile = () => {
   const { user } = useAuth(); // Access user object from AuthContext
-  const { username } = user || {}; // Use optional chaining to avoid errors if user is null
+  const [username, setUsername] = useState(""); // State to hold the username
+
+  // Use useEffect to update the username when user changes
+  useEffect(() => {
+    if (user && user.username) {
+      setUsername(user.username); // Set the username if user is logged in
+    } else {
+      setUsername(""); // Set username to empty string if user is not logged in
+    }
+  }, [user]);
 
   const { posts, addPost, editPost, deletePost } = useContext(PostsContext);
   const likedPosts = ["Liked Post 1", "Liked Post 2"]; // Example static liked posts
@@ -42,7 +52,8 @@ const UserProfile = () => {
                 style={{ width: "150px", borderRadius: "50%" }}
               />
               <h2 style={{ color: "white", marginBottom: "5px" }}>
-                {username || "Guest"} {/* Display "Guest" if username is null */}
+                {username || "Guest"}{" "}
+                {/* Display "Guest" if username is null */}
               </h2>
             </div>
           </section>
