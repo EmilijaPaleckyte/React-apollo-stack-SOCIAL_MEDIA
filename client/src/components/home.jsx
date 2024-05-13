@@ -191,10 +191,16 @@ const App = () => {
   const [selectedTag, setSelectedTag] = useState(null);
 
   return (
-    <div style={{ background: "linear-gradient(to bottom, #8E2DE2, #4A00E0)", minHeight: "100vh", paddingTop: "50px" }}>
+    <div
+      style={{
+        background: "linear-gradient(to bottom, #8E2DE2, #4A00E0)",
+        minHeight: "100vh",
+        paddingTop: "50px",
+      }}
+    >
       <div className="container">
         <div className="row justify-content-center">
-          <PostFeed />
+          <PostFeed setSelectedTag={setSelectedTag} />
           <TagsCard setSelectedTag={setSelectedTag} selectedTag={selectedTag} />
         </div>
       </div>

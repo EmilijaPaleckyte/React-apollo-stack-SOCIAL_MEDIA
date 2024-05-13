@@ -5,4 +5,5 @@ leidimai roliu -
 usernames -
 posts -
 liked posts fix
-per pus padidinti lentele ir fix error ir likes
+ fix error ir likes
+optimize
