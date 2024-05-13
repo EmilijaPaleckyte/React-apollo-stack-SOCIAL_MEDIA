@@ -2,7 +2,7 @@ server pasileidzia - npm start
 client - npm run dev
 
 leidimai roliu
-usernames - 
+usernames 
 posts ir liked posts fix
 tags
 

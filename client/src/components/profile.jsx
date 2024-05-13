@@ -1,9 +1,12 @@
 import { PostsContext } from "./postcontext";
-import PropTypes from "prop-types";
+import { useAuth } from "./authcontext"; // Import the useAuth hook
 import { useContext } from "react";
 import userPfp from "./assets/userpfp.png";
 
-const UserProfile = ({ username }) => {
+const UserProfile = () => {
+  const { user } = useAuth(); // Access user object from AuthContext
+  const { username } = user || {}; // Use optional chaining to avoid errors if user is null
+
   const { posts, addPost, editPost, deletePost } = useContext(PostsContext);
   const likedPosts = ["Liked Post 1", "Liked Post 2"]; // Example static liked posts
 
@@ -39,7 +42,7 @@ const UserProfile = ({ username }) => {
                 style={{ width: "150px", borderRadius: "50%" }}
               />
               <h2 style={{ color: "white", marginBottom: "5px" }}>
-                {username}
+                {username || "Guest"} {/* Display "Guest" if username is null */}
               </h2>
             </div>
           </section>
@@ -103,9 +106,7 @@ const UserProfile = ({ username }) => {
   );
 };
 
-// PropTypes validation for the UserProfile component
-UserProfile.propTypes = {
-  username: PropTypes.string.isRequired,
-};
+// Remove the username prop from propTypes definition
+UserProfile.propTypes = {};
 
 export default UserProfile;
