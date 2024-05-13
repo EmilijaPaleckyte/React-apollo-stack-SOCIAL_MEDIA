@@ -52,7 +52,7 @@ const UserProfile = () => {
                 style={{ width: "150px", borderRadius: "50%" }}
               />
               <h2 style={{ color: "white", marginBottom: "5px" }}>
-                {username || "Guest"}{" "}
+                {username || "Testie"}{" "}
                 {/* Display "Guest" if username is null */}
               </h2>
             </div>
