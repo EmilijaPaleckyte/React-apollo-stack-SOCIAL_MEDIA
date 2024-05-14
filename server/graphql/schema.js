@@ -53,9 +53,17 @@ const schema = buildSchema(`
     content: String!
   }
 
+  input UpdatePostInput {
+    postId: ID!
+    title: String!
+    content: String!
+  }
+
   type Mutation {
     createUser(input: CreateUserInput!): User!
-    createPost(input: CreatePostInput!): Post!  # Updated createPost mutation
+    createPost(input: CreatePostInput!): Post!
+    updatePost(input: UpdatePostInput!): Post!
+    deletePost(postId: ID!): Post!
     likePost(postId: ID!): Like!
     createTag(name: String!): Tag!
     createCategory(name: String!): Category!
