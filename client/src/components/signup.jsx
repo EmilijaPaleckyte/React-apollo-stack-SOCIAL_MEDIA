@@ -1,6 +1,6 @@
 import { gql, useMutation } from "@apollo/client";
 
-import { useAuth } from "./authcontext"; // Importing the useAuth hook
+import { useAuth } from "./authcontext";
 import { useState } from "react";
 
 const SignUpForm = () => {
