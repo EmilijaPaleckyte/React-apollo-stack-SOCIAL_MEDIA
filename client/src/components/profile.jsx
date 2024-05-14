@@ -36,7 +36,7 @@ const UserProfile = () => {
           <section className="col-md-12 mb-4 text-center" style={{ marginTop: "70px" }}>
             <div style={{ marginBottom: "10px" }}>
               <img src={userPfp} alt="User Profile" style={{ width: "150px", borderRadius: "50%" }} />
-              <h2 style={{ color: "white", marginBottom: "5px" }}>{username || "Testie"}</h2>
+              <h2 style={{ color: "white", marginBottom: "5px" }}>{username || "Petras"}</h2>
             </div>
           </section>
           <section className="col-md-6 mb-4" style={{ marginTop: "5px", height: "300px" }}>

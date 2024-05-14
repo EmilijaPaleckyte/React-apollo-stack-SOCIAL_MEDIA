@@ -158,7 +158,7 @@ const PostFeed = () => {
     if (user && user.username) {
       setUsername(user.username);
     } else {
-      setUsername("Testie"); 
+      setUsername("Petras"); 
     }
   }, [user]);
 

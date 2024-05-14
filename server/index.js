@@ -70,13 +70,10 @@ const root = {
   },
   createPost: async ({ input }) => {
     try {
-      // Validating input fields
       if (!input.title || !input.content || !input.author) {
         throw new Error("Title, content, and author are required fields.");
       }
-      // New post creation in the database
       const newPost = await Post.create(input);
-      // Return the newly created post
       return newPost;
     } catch (error) {
       console.error("Error creating post:", error);
