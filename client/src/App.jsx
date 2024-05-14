@@ -1,4 +1,4 @@
-import { AuthProvider, useAuth } from "./components/authcontext"; // Ensure useAuth is available
+import { AuthProvider, useAuth } from "./components/authcontext";
 import {
   Navigate,
   Route,
