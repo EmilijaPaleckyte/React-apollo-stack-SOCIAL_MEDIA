@@ -2,5 +2,4 @@ server - npm start
 client - npm run dev
 
 leidimai roliu -
-usernames -
 posts -
