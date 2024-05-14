@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       const { exp } = parseJwt(token);
       if (exp && Date.now() < exp * 1000) {
-        setUser(token);
+        setUser({ token }); // Include token in the user object
       } else {
         localStorage.removeItem("token");
         setUser(null);
@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
     const expirationTimestamp = currentTimeInSeconds + expirationTimeInSeconds;
     const tokenWithExpiration = { token, exp: expirationTimestamp };
     localStorage.setItem("token", JSON.stringify(tokenWithExpiration));
-    setUser(tokenWithExpiration);
+    setUser({ token }); // Include token in the user object
   };
 
   const logout = () => {
