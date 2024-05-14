@@ -65,7 +65,7 @@ const root = {
       return newUser;
     } catch (error) {
       console.error("Error creating user:", error);
-      throw new Error("Failed to create user: " + error.message); 
+      throw new Error("Failed to create user: " + error.message);
     }
   },
   createPost: async ({ input }) => {
@@ -78,6 +78,29 @@ const root = {
     } catch (error) {
       console.error("Error creating post:", error);
       throw new Error("Failed to create post: " + error.message);
+    }
+  },
+  updatePost: async ({ input }) => {
+    try {
+      const { postId, title, content } = input;
+      const updatedPost = await Post.findByIdAndUpdate(
+        postId,
+        { title, content },
+        { new: true }
+      );
+      return updatedPost;
+    } catch (error) {
+      console.error("Error updating post:", error);
+      throw new Error("Failed to update post: " + error.message);
+    }
+  },
+  deletePost: async ({ postId }) => {
+    try {
+      const deletedPost = await Post.findByIdAndDelete(postId);
+      return deletedPost;
+    } catch (error) {
+      console.error("Error deleting post:", error);
+      throw new Error("Failed to delete post: " + error.message);
     }
   },
   likePost: async ({ postId }) => {
