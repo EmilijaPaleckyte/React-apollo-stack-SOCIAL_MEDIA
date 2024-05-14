@@ -1,10 +1,11 @@
 import "./button.css";
 import "./selected.css";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { PostsContext } from "./postcontext";
 import PropTypes from "prop-types";
+import { useAuth } from "./authcontext";
 import userPfp from "./assets/userpfp.png";
 
 const TagsCard = ({ setSelectedTag, selectedTag }) => {
@@ -147,16 +148,24 @@ TagsCard.propTypes = {
   selectedTag: PropTypes.string,
 };
 
-const profileLink = "/profile";
-
 const PostFeed = () => {
+  const { user } = useAuth();
+  const [username, setUsername] = useState("");
   const { posts } = useContext(PostsContext);
   const [likedPosts, setLikedPosts] = useState({});
 
+  useEffect(() => {
+    if (user && user.username) {
+      setUsername(user.username);
+    } else {
+      setUsername("Testie"); 
+    }
+  }, [user]);
+
   const handleLikeClick = (index) => {
-    setLikedPosts(prevLikedPosts => ({
+    setLikedPosts((prevLikedPosts) => ({
       ...prevLikedPosts,
-      [index]: !prevLikedPosts[index]
+      [index]: !prevLikedPosts[index],
     }));
   };
 
@@ -167,11 +176,11 @@ const PostFeed = () => {
           <h5 className="card-title text-center mb-3">Post Feed</h5>
           {posts.map((post, index) => (
             <div key={index} className="mb-3">
-              <a href={profileLink}>
+              <a href="/profile">
                 <img src={userPfp} alt="User Profile" style={{ width: "50px", borderRadius: "50%" }} />
               </a>
               <div className="d-flex justify-content-between align-items-center mb-2">
-                <span className="fw-bold">Username</span>
+                <span className="fw-bold">{username}</span> {/* Displaying the real username */}
                 <button className="btn btn-outline-primary btn-icon" onClick={() => handleLikeClick(index)}>
                   {likedPosts[index] ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>}
                 </button>
@@ -183,11 +192,6 @@ const PostFeed = () => {
       </div>
     </div>
   );
-};
-
-PostFeed.propTypes = {
-  setSelectedTag: PropTypes.func.isRequired,
-  selectedTag: PropTypes.string,
 };
 
 const App = () => {
@@ -203,7 +207,7 @@ const App = () => {
     >
       <div className="container">
         <div className="row justify-content-center">
-          <PostFeed setSelectedTag={setSelectedTag} />
+          <PostFeed />
           <TagsCard setSelectedTag={setSelectedTag} selectedTag={selectedTag} />
         </div>
       </div>
