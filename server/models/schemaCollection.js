@@ -1,6 +1,6 @@
+// Mongoose Schemas/Models
 const mongoose = require("mongoose");
 
-// Mongoose Schemas/Models
 const UserSchema = new mongoose.Schema({
   username: String,
   email: String,
@@ -36,4 +36,30 @@ const Like = mongoose.model("Like", LikeSchema);
 const Tag = mongoose.model("Tag", TagSchema);
 const Category = mongoose.model("Category", CategorySchema);
 
-module.exports = { User, Post, Like, Tag, Category };
+// Update an existing post
+const updatePost = async (postId, title, content) => {
+  try {
+    const updatedPost = await Post.findByIdAndUpdate(
+      postId,
+      { title, content },
+      { new: true }
+    );
+    return updatedPost;
+  } catch (error) {
+    console.error("Error updating post:", error);
+    throw new Error("Failed to update post: " + error.message);
+  }
+};
+
+// Delete a post by its ID
+const deletePost = async (postId) => {
+  try {
+    const deletedPost = await Post.findByIdAndDelete(postId);
+    return deletedPost;
+  } catch (error) {
+    console.error("Error deleting post:", error);
+    throw new Error("Failed to delete post: " + error.message);
+  }
+};
+
+module.exports = { User, Post, Like, Tag, Category, updatePost, deletePost };
