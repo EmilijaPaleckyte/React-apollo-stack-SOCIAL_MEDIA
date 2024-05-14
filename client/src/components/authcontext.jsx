@@ -1,17 +1,38 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 import PropTypes from "prop-types";
+import { parseJwt } from "./utils/parsejwt";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  const login = (userData) => {
-    setUser(userData); // Updating the user state with the provided user data
+  useEffect(() => {
+    console.log("AuthProvider useEffect triggered");
+    const token = localStorage.getItem("token");
+    console.log("Token from localStorage:", token);
+    if (token) {
+      const { exp } = parseJwt(token);
+      if (exp && Date.now() < exp * 1000) {
+        setUser(token);
+      } else {
+        localStorage.removeItem("token");
+        setUser(null);
+      }
+    }
+  }, []);
+
+  const login = (token, expirationTimeInSeconds) => {
+    const currentTimeInSeconds = Math.floor(Date.now() / 1000);
+    const expirationTimestamp = currentTimeInSeconds + expirationTimeInSeconds;
+    const tokenWithExpiration = { token, exp: expirationTimestamp };
+    localStorage.setItem("token", JSON.stringify(tokenWithExpiration));
+    setUser(tokenWithExpiration);
   };
 
   const logout = () => {
+    localStorage.removeItem("token");
     setUser(null);
   };
 
@@ -26,4 +47,5 @@ AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);
