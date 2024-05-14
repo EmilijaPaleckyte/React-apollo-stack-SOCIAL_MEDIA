@@ -29,7 +29,6 @@ const SignInForm = ({ setUsername }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const { data } = await signIn({
         variables: {
@@ -37,15 +36,14 @@ const SignInForm = ({ setUsername }) => {
           password: formData.password,
         },
       });
-
-      console.log("User signed in successfully:", data.signIn);
+      console.log("User signed in successfully. Token:", data.signIn);
       setShowSuccess(true);
-      setUsername(data.signIn);
+      setUsername(data.signIn); 
     } catch (error) {
       console.error("Error signing in:", error);
     }
   };
-
+  
   const handleCloseSuccess = () => {
     setShowSuccess(false);
   };

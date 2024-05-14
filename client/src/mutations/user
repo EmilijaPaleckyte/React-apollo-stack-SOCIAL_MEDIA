@@ -9,3 +9,39 @@ mutation createUser($input: userInput) {
     }
 }
 `
+
+export const GET_POSTS = gql`
+  query {
+    posts {
+      id
+      content
+    }
+  }
+`;
+
+export const CREATE_POST = gql`
+  mutation CreatePost($content: String!) {
+    createPost(content: $content) {
+      id
+      content
+    }
+  }
+`;
+
+export const EDIT_POST = gql`
+  mutation EditPost($id: ID!, $content: String!) {
+    editPost(id: $id, content: $content) {
+      id
+      content
+    }
+  }
+`;
+
+export const DELETE_POST = gql`
+  mutation DeletePost($id: ID!) {
+    deletePost(id: $id) {
+      id
+      content
+    }
+  }
+`;
