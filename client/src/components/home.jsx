@@ -13,7 +13,7 @@ const TagsCard = ({ setSelectedTag, selectedTag }) => {
       {/* Tags card */}
       <div className="card mt-5 h-100">
         <div className="card-body d-flex flex-column align-items-center">
-          <h5 className="card-title text-center mb-3">Tags</h5>
+          <h5 className="card-title text-center mb-3">Popular Tags</h5>
           <div className="d-flex flex-wrap justify-content-center">
             <button
               className={`btn btn-primary btn-tag me-2 mb-2 ${selectedTag === "Fashion" ? "selected" : ""}`}
